@@ -3,12 +3,12 @@ pipeline {
       stages {
           stage('build') {
               steps {
-                 echo "Hello world from gibin"
+                 sh 'go build hello-world.go'
               }
           }
           stage('test') {
                steps {
-                  echo "Test, test world from Gibin"
+                  sh 'go run hello-world.go'
               }
           }
       }
