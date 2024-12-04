@@ -33,7 +33,7 @@ pipeline{
                 stage('Withenv scope'){
                 	steps{
                         	withEnv(["NAME=Thomas", "POS=Devops"]){
-                                	echo "${env.NAME} is a ${env.POS}	
+                                	echo "${env.NAME} is a ${env.POS}"	
                                 }
                         }
                 }
