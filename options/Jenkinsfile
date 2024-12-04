@@ -1,0 +1,23 @@
+pipeline{
+	agent any 
+        options{
+        	disableConcurrentBuilds()
+                timestamps()
+                retry(2)
+        }
+        stages{
+        	stage('sleep for 10s){
+                	options{
+                        	timeout(time: 5, unit: 'SECONDS')
+                        }
+                        steps{
+                        	sh 'sleep 10; true'
+                        }
+                }
+                stage('Explicit errors'){
+                	steps{
+                        	sh 'exit 1'
+                        }
+                }
+        }
+}
