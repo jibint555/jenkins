@@ -1,0 +1,24 @@
+pipeline{
+	agent any
+        parameters{
+        	string(name: 'NAME', defaultValue: 'Mr.GIBIN', description: 'Enter the name:')
+                test(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+                booleanParam(name: 'Toggle', defaultValue: true, description: 'Toggle this vale')
+                choice(name: 'CHOICE', defaultValue:['one', 'Two', 'Three'], description: 'selectn your choice')
+       }
+       stages{
+       	     stage('Using parameters'){
+             	   steps{
+                   	echo "Hello ${params.NAME}"
+                        echo "Biography ${params.BIOGRAPHY}"
+                        echo "Toggle ${params.Toggle}"
+                        echo "choice ${params.CHOICE}"
+                   }
+             }
+             stage('Env and parametrs'){
+             	   steps{
+                        sh 'printenv'
+                   }
+             }
+       }
+}
