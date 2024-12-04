@@ -22,7 +22,6 @@ pipeline{
                         }
                 	steps{
                         	echo "The ${env.USER_NAME} is a devops engineer"
-                                #script is for including programming things like for, if, loops
                                 script{
                                 	env.USER_GRT='Hello!!!'
                                 }
