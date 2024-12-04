@@ -12,7 +12,7 @@ pipeline{
                    	echo "Hello ${params.NAME}"
                         echo "Biography ${params.BIOGRAPHY}"
                         echo "Toggle ${params.Toggle}"
-                        echo "choice ${params.CHOICE}"
+                        sh 'echo "choice is ${CHOICE}"'
                    }
              }
              stage('Env and parametrs'){
