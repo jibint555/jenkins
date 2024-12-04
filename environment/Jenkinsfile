@@ -1,0 +1,54 @@
+pipeline{
+	agent any
+        environment{
+        	CC='gcc'
+        }
+        stages{
+                stage('Listening env'){
+                	steps{
+                        	sh 'printenv'
+                        }
+                }
+        	stage('Using env and vars'){
+                	steps{
+                        	echo "C compiler is ${env.CC}"
+                                echo "The build number is:${env.BUILD_NUMBER}"
+                                sh 'echo"Current build numer #${BUILD_NUMBER}"'
+                        }
+                }
+                stage('stage level env'){
+                        environment{
+                        	USER_NAME='Gibin'
+                        }
+                	steps{
+                        	echo "The ${env.USER_NAME} is a devops engineer"
+                                #script is for including programming things like for, if, loops
+                                script{
+                                	env.USER_GRT='Hello!!!'
+                                }
+                                echo "{env.USER_GRT} ${env.USER_NAME}"
+                             
+                        	
+                        }
+                }
+                stage('Withenv scope'){
+                	steps{
+                        	withEnv(["NAME=Thomas", "POS=Devops"]){
+                                	echo "${env.NAME} is a ${env.POS}	
+                                }
+                        }
+                }
+                stage('shell_return'){
+                	
+                        environment{
+                        	NO_OF_USERS=sh(script: `cat /etc/passwd|wc -l`, returnStdout: true).trim()
+                        }
+                        steps{
+                        	echo "no.of users in the system is ${env.NO_OF_USERS}"
+                        	
+                        }
+                }
+ 
+
+        }
+}
